@@ -23,7 +23,7 @@ public class HelloServer {
             serverBootstrap.channel(NioServerSocketChannel.class);
             //子处理器,用于处理workGroup
             serverBootstrap.childHandler(new HelloServerIntialier());
-            //启动server，并且设置8080为启动的端口号，同时启动方式为同步
+            //启动server，并且设置8080 为启动的端口号，同时启动方式为同步
             ChannelFuture channelFuture = serverBootstrap.bind(8080).sync();
 
             //监听关闭channel.设置为同步
