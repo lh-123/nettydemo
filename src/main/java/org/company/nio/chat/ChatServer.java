@@ -32,10 +32,12 @@ public class ChatServer {
                         SelectionKey selectionKey = iterator.next();
                         if(selectionKey.isAcceptable()){
                             SocketChannel socketChannel = listenchannel.accept();
+                            socketChannel.configureBlocking(false);
                             socketChannel.register(selector,SelectionKey.OP_READ);
                             System.out.println(socketChannel.getRemoteAddress()+"上线了");
                         }
                         if (selectionKey.isReadable()){
+                            readData(selectionKey);
                         }
                         iterator.remove();
                     }
@@ -73,16 +75,17 @@ public class ChatServer {
         for(SelectionKey selectionKey:selector.keys()){
             Channel channel = selectionKey.channel();
             if (channel instanceof SocketChannel && channel !=self){
-                ByteBuffer byteBuffer = ByteBuffer.wrap(msg.getBytes());
                 SocketChannel dest=(SocketChannel)channel;
+                ByteBuffer byteBuffer = ByteBuffer.wrap(msg.getBytes());
                 dest.write(byteBuffer);
             }
 
         }
 
     }
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) {
+        ChatServer chatServer = new ChatServer();
+        chatServer.listen();
 
     }
 }
