@@ -11,7 +11,9 @@ public class HttpServer {
         NioEventLoopGroup workGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGroup,workGroup).channel(NioServerSocketChannel.class).childHandler(new HttpServerInitializer());
+            serverBootstrap.group(bossGroup,workGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(new HttpServerInitializer());
             ChannelFuture future = serverBootstrap.bind(8888).sync();
             future.channel().closeFuture().sync();
         }finally {
