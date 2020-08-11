@@ -1,4 +1,4 @@
-package org.company.netty.chat;
+package org.company.netty.chat.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -10,6 +10,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import org.company.netty.chat.ChatClientHandler;
 
 import java.util.Scanner;
 

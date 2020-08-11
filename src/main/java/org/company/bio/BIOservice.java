@@ -1,14 +1,9 @@
 package org.company.bio;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import jdk.nashorn.internal.ir.CallNode;
-import org.jcp.xml.dsig.internal.dom.DOMUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,12 +21,9 @@ public class BIOservice {
                 @Override
                 public void run() {
                     handler(socket);
-
                 }
             });
-
         }
-
     }
     public static void handler(Socket socket)  {
         try {
@@ -54,9 +46,6 @@ public class BIOservice {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-
-
     }
 }

@@ -1,15 +1,15 @@
 package org.company.netty.chat;
 
+import com.fasterxml.jackson.datatype.jsr310.ser.DurationSerializer;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
     //定义channel主，管理所有channel.GlobalEventExecutor.INSTANCE全局时间执行器
@@ -23,6 +23,8 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
         //将该客户端连接服务器信息推送
         channelGroup.writeAndFlush("[伞兵]"+channel.remoteAddress()+"已就位"+sdf.format(new java.util.Date())+"\n");
         channelGroup.add(channel);
+
+
     }
     //将该客户端断开服务器信息推送
     @Override
